@@ -13,19 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.Utils;
 
-import com.galarzaa.androidthings.Rc522;
-import com.google.android.things.pio.Gpio;
-import com.google.android.things.pio.PeripheralManager ;
-import com.google.android.things.pio.SpiDevice ;
-
-
-import java.io.IOException;
-
-
 
 public class MainActivity extends AppCompatActivity {
-
-    private Rc522 mRc522;
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     Switch simpleSwitch;
@@ -36,8 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     GpioProcessor.Gpio led = gpioProcessor.getPin2();
     GpioProcessor.Gpio jet = gpioProcessor.getPin3();
-
-    PeripheralManager peripheralManager ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +104,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-  
+
 
 }
