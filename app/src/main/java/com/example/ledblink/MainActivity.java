@@ -1,30 +1,43 @@
 package com.example.ledblink;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.Utils;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import com.galarzaa.androidthings.Rc522;
+import com.google.android.things.pio.Gpio;
+import com.google.android.things.pio.PeripheralManager ;
+import com.google.android.things.pio.SpiDevice ;
+
+
+import java.io.IOException;
+
 
 
 public class MainActivity extends AppCompatActivity {
 
+    private Rc522 mRc522;
+
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     Switch simpleSwitch;
     boolean stopThread =false ;
     TextView status ;
-    Button givePermission;
 
     GpioProcessor gpioProcessor = new GpioProcessor();
 
     GpioProcessor.Gpio led = gpioProcessor.getPin2();
     GpioProcessor.Gpio jet = gpioProcessor.getPin3();
+
+    PeripheralManager peripheralManager ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +58,9 @@ public class MainActivity extends AppCompatActivity {
                 // true if the switch is in the On position
             }
         });
+        setGivePermission();
 
-       CheckGPIOCableIn();
+        CheckGPIOCableIn();
 
     }
     @Override
@@ -91,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         };
         t.start();
     }
-    public void onClickRunScript(View view) {
+    public void setGivePermission() {
         Utils.runCommand("echo 2 > /sys/class/gpio/export");
         Utils.chmod("777","/sys/class/gpio/gpio2");
         Utils.chmod("777","/sys/class/gpio/gpio2/value");
@@ -103,5 +117,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+  
 
 }
