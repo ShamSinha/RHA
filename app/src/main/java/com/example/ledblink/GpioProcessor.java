@@ -125,22 +125,5 @@ public class GpioProcessor {
     /* These methods are specific to the IFC6410. This is to easily get access to the pins without
        knowing their operating system value.
      */
-    public Gpio getPin2() {
-        return new Gpio(2);
-    }
 
-    public Gpio getPin3() {
-        return new Gpio(3);
-    }
-
-
-
-    public Gpio[] getAllPins() {
-        Gpio[] allPins = new Gpio[12];
-
-        allPins[0]  = getPin2();
-        allPins[1]  = getPin3();
-
-        return allPins;
-    }
 }

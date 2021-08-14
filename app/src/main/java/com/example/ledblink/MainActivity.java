@@ -1,17 +1,19 @@
 package com.example.ledblink;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.Permissions;
 import com.example.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -20,11 +22,12 @@ public class MainActivity extends AppCompatActivity {
     Switch simpleSwitch;
     boolean stopThread =false ;
     TextView status ;
+    TextView rfid;
 
     GpioProcessor gpioProcessor = new GpioProcessor();
 
-    GpioProcessor.Gpio led = gpioProcessor.getPin2();
-    GpioProcessor.Gpio jet = gpioProcessor.getPin3();
+    GpioProcessor.Gpio led = gpioProcessor.getPin(2);
+    GpioProcessor.Gpio jet = gpioProcessor.getPin(3);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         simpleSwitch = findViewById(R.id.switch1);
         status = findViewById(R.id.textView);
+        rfid = findViewById(R.id.rfid_tag);
         status.setText("Not PluggedIn");
+
 
         led.out();
         jet.in();
@@ -48,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         setGivePermission();
 
         CheckGPIOCableIn();
-
     }
     @Override
     protected void onStart() {
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         if (!Utils.rootAccess()){
             Log.d("TAG","No root access");
         }
+
     }
 
 
@@ -93,14 +98,16 @@ public class MainActivity extends AppCompatActivity {
         t.start();
     }
     public void setGivePermission() {
-        Utils.runCommand("echo 2 > /sys/class/gpio/export");
-        Utils.chmod("777","/sys/class/gpio/gpio2");
-        Utils.chmod("777","/sys/class/gpio/gpio2/value");
-        Utils.chmod("777","/sys/class/gpio/gpio2/direction");
-        Utils.runCommand("echo 3 > /sys/class/gpio/export");
-        Utils.chmod("777","/sys/class/gpio/gpio3");
-        Utils.chmod("777","/sys/class/gpio/gpio3/value");
-        Utils.chmod("777","/sys/class/gpio/gpio3/direction");
+        List<Integer> gpioList= new ArrayList<Integer>();
+        gpioList.add(2);
+        gpioList.add(3);
+        gpioList.add(25); /// reset pin 22
+        gpioList.add(8);
+        gpioList.add(9);
+        gpioList.add(10);
+        gpioList.add(11);
+
+        Permissions.GivePermissionToGpio(gpioList);
 
     }
 
