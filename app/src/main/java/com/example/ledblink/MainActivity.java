@@ -9,8 +9,13 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.diozero.devices.MFRC522;
+import com.diozero.util.Hex;
+import com.diozero.util.SleepUtil;
 import com.example.Permissions;
 import com.example.Utils;
+
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
     GpioProcessor gpioProcessor = new GpioProcessor();
 
-    GpioProcessor.Gpio led = gpioProcessor.getPin(2);
-    GpioProcessor.Gpio jet = gpioProcessor.getPin(3);
+    GpioProcessor.Gpio led ;
+    GpioProcessor.Gpio jet ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +42,6 @@ public class MainActivity extends AppCompatActivity {
         status = findViewById(R.id.textView);
         rfid = findViewById(R.id.rfid_tag);
         status.setText("Not PluggedIn");
-
-
-        led.out();
-        jet.in();
 
         simpleSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -52,7 +53,9 @@ public class MainActivity extends AppCompatActivity {
         });
         setGivePermission();
 
-        CheckGPIOCableIn();
+        //CheckGPIOCableIn();
+
+        ReadCard(0,25);
     }
     @Override
     protected void onStart() {
@@ -60,9 +63,14 @@ public class MainActivity extends AppCompatActivity {
         if (!Utils.rootAccess()){
             Log.d("TAG","No root access");
         }
+        led = gpioProcessor.getPin(2);
+        jet = gpioProcessor.getPin(3);
+
+
+        led.out();
+        jet.in();
 
     }
-
 
     private void CheckGPIOCableIn(){
         final Thread t = new Thread(){
@@ -97,6 +105,56 @@ public class MainActivity extends AppCompatActivity {
         };
         t.start();
     }
+
+    public void ReadCard( int chipSelect , int resetPin){
+
+        Log.d("TAG","hello");
+        waitForCard(chipSelect,resetPin);
+
+    }
+
+    public void waitForCard(int chipSelect, int resetPin) {
+        MFRC522 mfrc522 = new MFRC522(chipSelect, resetPin);
+        Log.d("TAG",mfrc522.toString());
+//			if (mfrc522.performSelfTest()) {
+//				Logger.debug("Self test passed");
+//			} else {
+//				Logger.debug("Self test failed");
+//			}
+            // Wait for a card
+            MFRC522.UID uid = null;
+            while (uid == null) {
+                Logger.info("Waiting for a card");
+                uid = getID(mfrc522);
+                Logger.debug("uid: {}", uid);
+                SleepUtil.sleepSeconds(1);
+            }
+        }
+
+
+    private static MFRC522.UID getID(MFRC522 mfrc522) {
+        // If a new PICC placed to RFID reader continue
+        if (! mfrc522.isNewCardPresent()) {
+            return null;
+        }
+        Logger.debug("A card is present!");
+        // Since a PICC placed get Serial and continue
+        MFRC522.UID uid = mfrc522.readCardSerial();
+        if (uid == null) {
+            return null;
+        }
+
+        // There are Mifare PICCs which have 4 byte or 7 byte UID care if you use 7 byte PICC
+        // I think we should assume every PICC as they have 4 byte UID
+        // Until we support 7 byte PICCs
+        Logger.info("Scanned PICC's UID: {}", Hex.encodeHexString(uid.getUidBytes()));
+
+        mfrc522.haltA();
+
+        return uid;
+    }
+
+
     public void setGivePermission() {
         List<Integer> gpioList= new ArrayList<Integer>();
         gpioList.add(2);
