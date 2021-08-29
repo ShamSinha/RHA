@@ -1,8 +1,8 @@
-package hu.whiterabbit.rc522forpi4j.model.communication;
+package com.example.rc522forpi4j.model.communication;
 
 import java.util.Arrays;
 
-import static hu.whiterabbit.rc522forpi4j.model.card.Block.BYTE_COUNT;
+import static com.example.rc522forpi4j.model.card.Block.BYTE_COUNT;
 
 public class CommunicationResult {
 

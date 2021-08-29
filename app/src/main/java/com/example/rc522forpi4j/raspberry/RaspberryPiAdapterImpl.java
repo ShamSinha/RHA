@@ -1,9 +1,13 @@
-package hu.whiterabbit.rc522forpi4j.raspberry;
+package com.example.rc522forpi4j.raspberry;
 
 import com.pi4j.wiringpi.Gpio;
+
+
+
 import com.pi4j.wiringpi.Spi;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 public class RaspberryPiAdapterImpl implements RaspberryPiAdapter {
 

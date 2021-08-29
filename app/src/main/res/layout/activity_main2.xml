@@ -24,7 +24,7 @@
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/rfid"
         android:layout_width="511dp"
         android:layout_height="112dp"
         android:textSize="40sp"
@@ -37,11 +37,11 @@
 
     <TextView
         android:id="@+id/rfid_tag"
-        android:layout_width="194dp"
-        android:layout_height="131dp"
+        android:layout_width="266dp"
+        android:layout_height="132dp"
         android:text="TextView"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/rfid"
         app:layout_constraintEnd_toStartOf="@+id/switch1"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

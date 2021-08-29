@@ -1,4 +1,4 @@
-package hu.whiterabbit.rc522forpi4j.rc522;
+package com.example.rc522forpi4j.rc522;
 
 //@SuppressWarnings("unused")
 class RC522CommandTable {

@@ -1,6 +1,6 @@
-package hu.whiterabbit.rc522forpi4j.rc522;
+package com.example.rc522forpi4j.rc522;
 
-import hu.whiterabbit.rc522forpi4j.model.communication.CommunicationResult;
+import com.example.rc522forpi4j.model.communication.CommunicationResult;
 
 public interface RC522Adapter {
 

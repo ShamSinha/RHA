@@ -1,8 +1,8 @@
-package hu.whiterabbit.rc522forpi4j.model.card;
+package com.example.rc522forpi4j.model.card;
 
-import static hu.whiterabbit.rc522forpi4j.util.CardUtil.blockTypeToString;
-import static hu.whiterabbit.rc522forpi4j.util.CardUtil.getBlockAccessMode;
-import static hu.whiterabbit.rc522forpi4j.util.DataUtil.*;
+import static com.example.rc522forpi4j.util.CardUtil.blockTypeToString;
+import static com.example.rc522forpi4j.util.CardUtil.getBlockAccessMode;
+import static com.example.rc522forpi4j.util.DataUtil.*;
 import static java.lang.System.arraycopy;
 
 public class SectorTrailerBlock implements Block {

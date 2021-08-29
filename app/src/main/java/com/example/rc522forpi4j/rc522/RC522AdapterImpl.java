@@ -1,15 +1,15 @@
-package hu.whiterabbit.rc522forpi4j.rc522;
+package com.example.rc522forpi4j.rc522;
 
-import hu.whiterabbit.rc522forpi4j.model.communication.CommunicationResult;
-import hu.whiterabbit.rc522forpi4j.model.communication.CommunicationStatus;
-import hu.whiterabbit.rc522forpi4j.raspberry.RaspberryPiAdapter;
+import com.example.rc522forpi4j.model.communication.CommunicationResult;
+import com.example.rc522forpi4j.model.communication.CommunicationStatus;
+import com.example.rc522forpi4j.raspberry.RaspberryPiAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static hu.whiterabbit.rc522forpi4j.model.card.Block.BYTE_COUNT;
-import static hu.whiterabbit.rc522forpi4j.model.card.Card.TAG_ID_SIZE;
-import static hu.whiterabbit.rc522forpi4j.rc522.RC522CommandTable.*;
-import static hu.whiterabbit.rc522forpi4j.util.DataUtil.getStatus;
+import static com.example.rc522forpi4j.model.card.Block.BYTE_COUNT;
+import static com.example.rc522forpi4j.model.card.Card.TAG_ID_SIZE;
+import static com.example.rc522forpi4j.rc522.RC522CommandTable.*;
+import static com.example.rc522forpi4j.util.DataUtil.getStatus;
 import static java.lang.System.arraycopy;
 
 @SuppressWarnings({"WeakerAccess"})

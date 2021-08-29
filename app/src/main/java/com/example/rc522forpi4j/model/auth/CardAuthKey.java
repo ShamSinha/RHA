@@ -1,10 +1,10 @@
-package hu.whiterabbit.rc522forpi4j.model.auth;
+package com.example.rc522forpi4j.model.auth;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static hu.whiterabbit.rc522forpi4j.model.card.Card.SECTOR_COUNT;
+import static com.example.rc522forpi4j.model.card.Card.SECTOR_COUNT;
 
 public class CardAuthKey {
 

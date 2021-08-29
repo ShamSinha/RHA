@@ -1,27 +1,27 @@
-package hu.whiterabbit.rc522forpi4j.rc522;
+package com.example.rc522forpi4j.rc522;
 
-import hu.whiterabbit.rc522forpi4j.model.auth.BlockAuthKey;
-import hu.whiterabbit.rc522forpi4j.model.auth.CardAuthKey;
-import hu.whiterabbit.rc522forpi4j.model.auth.SectorAuthKey;
-import hu.whiterabbit.rc522forpi4j.model.card.*;
-import hu.whiterabbit.rc522forpi4j.model.communication.CommunicationResult;
-import hu.whiterabbit.rc522forpi4j.model.communication.CommunicationStatus;
-import hu.whiterabbit.rc522forpi4j.raspberry.RaspberryPiAdapter;
-import hu.whiterabbit.rc522forpi4j.raspberry.RaspberryPiAdapterImpl;
-import hu.whiterabbit.rc522forpi4j.util.DataUtil;
+import com.example.rc522forpi4j.model.auth.BlockAuthKey;
+import com.example.rc522forpi4j.model.auth.CardAuthKey;
+import com.example.rc522forpi4j.model.auth.SectorAuthKey;
+import com.example.rc522forpi4j.model.card.*;
+import com.example.rc522forpi4j.model.communication.CommunicationResult;
+import com.example.rc522forpi4j.model.communication.CommunicationStatus;
+import com.example.rc522forpi4j.raspberry.RaspberryPiAdapter;
+import com.example.rc522forpi4j.raspberry.RaspberryPiAdapterImpl;
+import com.example.rc522forpi4j.util.DataUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static hu.whiterabbit.rc522forpi4j.model.auth.BlockAuthKey.getFactoryDefaultKey;
-import static hu.whiterabbit.rc522forpi4j.model.auth.BlockAuthKey.getFactoryDefaultSectorKey;
-import static hu.whiterabbit.rc522forpi4j.model.card.Card.TAG_ID_SIZE;
-import static hu.whiterabbit.rc522forpi4j.model.card.ManufacturerBlock.MANUFACTURER_BLOCK_INDEX;
-import static hu.whiterabbit.rc522forpi4j.model.card.ManufacturerBlock.MANUFACTURER_SECTOR_INDEX;
-import static hu.whiterabbit.rc522forpi4j.model.card.SectorTrailerBlock.SECTOR_TRAILER_BLOCK_INDEX;
-import static hu.whiterabbit.rc522forpi4j.rc522.RC522CommandTable.PICC_AUTHENT1A;
-import static hu.whiterabbit.rc522forpi4j.rc522.RC522CommandTable.PICC_AUTHENT1B;
-import static hu.whiterabbit.rc522forpi4j.util.CardUtil.getFullAddress;
-import static hu.whiterabbit.rc522forpi4j.util.CardUtil.getReadStatus;
+import static com.example.rc522forpi4j.model.auth.BlockAuthKey.getFactoryDefaultKey;
+import static com.example.rc522forpi4j.model.auth.BlockAuthKey.getFactoryDefaultSectorKey;
+import static com.example.rc522forpi4j.model.card.Card.TAG_ID_SIZE;
+import static com.example.rc522forpi4j.model.card.ManufacturerBlock.MANUFACTURER_BLOCK_INDEX;
+import static com.example.rc522forpi4j.model.card.ManufacturerBlock.MANUFACTURER_SECTOR_INDEX;
+import static com.example.rc522forpi4j.model.card.SectorTrailerBlock.SECTOR_TRAILER_BLOCK_INDEX;
+import static com.example.rc522forpi4j.rc522.RC522CommandTable.PICC_AUTHENT1A;
+import static com.example.rc522forpi4j.rc522.RC522CommandTable.PICC_AUTHENT1B;
+import static com.example.rc522forpi4j.util.CardUtil.getFullAddress;
+import static com.example.rc522forpi4j.util.CardUtil.getReadStatus;
 
 public class RC522ClientImpl implements RC522Client {
 

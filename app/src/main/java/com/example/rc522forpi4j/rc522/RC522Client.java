@@ -1,11 +1,11 @@
-package hu.whiterabbit.rc522forpi4j.rc522;
+package com.example.rc522forpi4j.rc522;
 
-import hu.whiterabbit.rc522forpi4j.model.auth.BlockAuthKey;
-import hu.whiterabbit.rc522forpi4j.model.auth.CardAuthKey;
-import hu.whiterabbit.rc522forpi4j.model.auth.SectorAuthKey;
-import hu.whiterabbit.rc522forpi4j.model.card.Block;
-import hu.whiterabbit.rc522forpi4j.model.card.Card;
-import hu.whiterabbit.rc522forpi4j.model.card.Sector;
+import com.example.rc522forpi4j.model.auth.BlockAuthKey;
+import com.example.rc522forpi4j.model.auth.CardAuthKey;
+import com.example.rc522forpi4j.model.auth.SectorAuthKey;
+import com.example.rc522forpi4j.model.card.Block;
+import com.example.rc522forpi4j.model.card.Card;
+import com.example.rc522forpi4j.model.card.Sector;
 
 public interface RC522Client {
 

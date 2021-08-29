@@ -1,6 +1,6 @@
-package hu.whiterabbit.rc522forpi4j.util;
+package com.example.rc522forpi4j.util;
 
-import hu.whiterabbit.rc522forpi4j.model.communication.CommunicationStatus;
+import com.example.rc522forpi4j.model.communication.CommunicationStatus;
 
 import java.util.ArrayList;
 import java.util.List;

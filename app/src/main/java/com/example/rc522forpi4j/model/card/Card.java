@@ -1,9 +1,9 @@
-package hu.whiterabbit.rc522forpi4j.model.card;
+package com.example.rc522forpi4j.model.card;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static hu.whiterabbit.rc522forpi4j.util.DataUtil.bytesToHex;
+import static com.example.rc522forpi4j.util.DataUtil.bytesToHex;
 
 public class Card {
 

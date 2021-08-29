@@ -1,9 +1,9 @@
-package hu.whiterabbit.rc522forpi4j.util;
+package com.example.rc522forpi4j.util;
 
-import hu.whiterabbit.rc522forpi4j.model.card.*;
-import hu.whiterabbit.rc522forpi4j.model.communication.CommunicationResult;
+import com.example.rc522forpi4j.model.card.*;
+import com.example.rc522forpi4j.model.communication.CommunicationResult;
 
-import static hu.whiterabbit.rc522forpi4j.util.AccessModeBit.*;
+import static com.example.rc522forpi4j.util.AccessModeBit.*;
 
 public class CardUtil {
 

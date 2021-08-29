@@ -11,6 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.Permissions;
 import com.example.Utils;
+import com.example.rc522forpi4j.model.card.Card;
+import com.example.rc522forpi4j.rc522.RC522Client;
+import com.example.rc522forpi4j.rc522.RC522ClientImpl;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +33,15 @@ public class MainActivity extends AppCompatActivity {
     GpioProcessor.Gpio led = gpioProcessor.getPin(2);
     GpioProcessor.Gpio jet = gpioProcessor.getPin(3);
 
+    RC522Client rc522Client = RC522ClientImpl.createInstance();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         simpleSwitch = findViewById(R.id.switch1);
-        status = findViewById(R.id.textView);
+        status = findViewById(R.id.rfid);
         rfid = findViewById(R.id.rfid_tag);
         status.setText("Not PluggedIn");
 
@@ -61,6 +68,38 @@ public class MainActivity extends AppCompatActivity {
             Log.d("TAG","No root access");
         }
 
+    }
+
+    private void ReadCard(){
+        final Thread t = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    // Search for card
+                    while (!isInterrupted()) {
+                        // Reading card data using the client
+                        Card card = rc522Client.readCardData();
+
+                        // If card is present, print it's content into the log
+                        if (card != null) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    rfid.setText(card.getTagIdAsString());
+                                }
+                            });
+
+                            Thread.sleep(2000);
+                        }
+
+                        Thread.sleep(1000);
+                    }
+                } catch (InterruptedException e) {
+                    Log.e("error", e.getMessage());
+                }
+            }
+        };
+        t.start();
     }
 
 

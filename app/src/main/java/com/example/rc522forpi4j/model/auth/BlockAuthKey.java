@@ -1,8 +1,8 @@
-package hu.whiterabbit.rc522forpi4j.model.auth;
+package com.example.rc522forpi4j.model.auth;
 
-import hu.whiterabbit.rc522forpi4j.model.card.SectorTrailerBlock;
+import com.example.rc522forpi4j.model.card.SectorTrailerBlock;
 
-import static hu.whiterabbit.rc522forpi4j.model.card.SectorTrailerBlock.SECTOR_TRAILER_BLOCK_INDEX;
+import static com.example.rc522forpi4j.model.card.SectorTrailerBlock.SECTOR_TRAILER_BLOCK_INDEX;
 
 public class BlockAuthKey {
 

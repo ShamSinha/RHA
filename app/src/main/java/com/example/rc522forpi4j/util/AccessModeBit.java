@@ -1,4 +1,4 @@
-package hu.whiterabbit.rc522forpi4j.util;
+package com.example.rc522forpi4j.util;
 
 enum AccessModeBit {
 

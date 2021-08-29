@@ -1,4 +1,4 @@
-package hu.whiterabbit.rc522forpi4j.raspberry;
+package com.example.rc522forpi4j.raspberry;
 
 public interface RaspberryPiAdapter {
 
