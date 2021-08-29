@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
     TextView status ;
     TextView rfid;
 
-    GpioProcessor gpioProcessor = new GpioProcessor();
+    //GpioProcessor gpioProcessor = new GpioProcessor();
 
-    GpioProcessor.Gpio led ;
-    GpioProcessor.Gpio jet ;
+    //GpioProcessor.Gpio led ;
+    //GpioProcessor.Gpio jet ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +46,15 @@ public class MainActivity extends AppCompatActivity {
         simpleSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // do something, the isChecked will be
+                /*
                 if (isChecked) led.high();
                 else led.low();
+
+                 */
                 // true if the switch is in the On position
             }
         });
-        setGivePermission();
+        //setGivePermission();
 
         //CheckGPIOCableIn();
 
@@ -63,15 +66,15 @@ public class MainActivity extends AppCompatActivity {
         if (!Utils.rootAccess()){
             Log.d("TAG","No root access");
         }
-        led = gpioProcessor.getPin(2);
-        jet = gpioProcessor.getPin(3);
+        //led = gpioProcessor.getPin(2);
+        //jet = gpioProcessor.getPin(3);
 
 
-        led.out();
-        jet.in();
+        //led.out();
+        //jet.in();
 
     }
-
+/*
     private void CheckGPIOCableIn(){
         final Thread t = new Thread(){
             @Override
@@ -80,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         if(jet.getValue() == 0){
                             stopThread = true;
+                            Log.d("TAG",String.valueOf(jet.getValue()));
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -106,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
         t.start();
     }
 
+ */
+
     public void ReadCard( int chipSelect , int resetPin){
 
         Log.d("TAG","hello");
@@ -115,12 +121,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void waitForCard(int chipSelect, int resetPin) {
         MFRC522 mfrc522 = new MFRC522(chipSelect, resetPin);
-        Log.d("TAG",mfrc522.toString());
-//			if (mfrc522.performSelfTest()) {
-//				Logger.debug("Self test passed");
-//			} else {
-//				Logger.debug("Self test failed");
-//			}
+        //Log.d("TAG",mfrc522.toString());
+			if (mfrc522.performSelfTest()) {
+				Logger.debug("Self test passed");
+			} else {
+				Logger.debug("Self test failed");
+			}
             // Wait for a card
             MFRC522.UID uid = null;
             while (uid == null) {
@@ -159,11 +165,11 @@ public class MainActivity extends AppCompatActivity {
         List<Integer> gpioList= new ArrayList<Integer>();
         gpioList.add(2);
         gpioList.add(3);
-        gpioList.add(25); /// reset pin 22
-        gpioList.add(8);
-        gpioList.add(9);
-        gpioList.add(10);
-        gpioList.add(11);
+        //gpioList.add(25); /// reset pin 22
+        //gpioList.add(8);
+        //gpioList.add(9);
+        //gpioList.add(10);
+        //gpioList.add(11);
 
         Permissions.GivePermissionToGpio(gpioList);
 
