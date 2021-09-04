@@ -38,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
         rfid = findViewById(R.id.rfid_tag);
         status.setText("Not PluggedIn");
 
+        if (!Utils.rootAccess()) Log.d("TAG","no root access");
+
+        else {
+            setGivePermission();
+            CheckGPIOCableIn();
+        }
 
         led.out();
         jet.in();
@@ -50,18 +56,10 @@ public class MainActivity extends AppCompatActivity {
                 // true if the switch is in the On position
             }
         });
-        setGivePermission();
 
-        CheckGPIOCableIn();
-    }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (!Utils.rootAccess()){
-            Log.d("TAG","No root access");
-        }
 
     }
+
 
 
     private void CheckGPIOCableIn(){
