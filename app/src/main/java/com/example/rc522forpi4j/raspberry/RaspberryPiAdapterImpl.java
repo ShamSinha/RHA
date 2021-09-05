@@ -1,7 +1,8 @@
 package com.example.rc522forpi4j.raspberry;
 
-import com.pi4j.wiringpi.Gpio;
 
+
+//import com.pi4j.wiringpi.Gpio ;
 
 
 import com.pi4j.wiringpi.Spi;
@@ -26,7 +27,7 @@ public class RaspberryPiAdapterImpl implements RaspberryPiAdapter {
 	 */
 	@Override
 	public boolean init(int spiChannel, int speed, int resetPin) {
-		Gpio.wiringPiSetup();
+		//Gpio.wiringPiSetup();
 
 		this.spiChannel = spiChannel;
 
@@ -39,8 +40,8 @@ public class RaspberryPiAdapterImpl implements RaspberryPiAdapter {
 			return false;
 		}
 
-		Gpio.pinMode(resetPin, Gpio.OUTPUT);
-		Gpio.digitalWrite(resetPin, Gpio.HIGH);
+		//Gpio.pinMode(resetPin, Gpio.OUTPUT);
+		//Gpio.digitalWrite(resetPin, Gpio.HIGH);
 
 		return true;
 	}

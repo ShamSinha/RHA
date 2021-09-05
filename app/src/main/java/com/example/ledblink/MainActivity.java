@@ -45,10 +45,6 @@ public class MainActivity extends AppCompatActivity {
         rfid = findViewById(R.id.rfid_tag);
         status.setText("Not PluggedIn");
 
-
-        led.out();
-        jet.in();
-
         simpleSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // do something, the isChecked will be
@@ -57,18 +53,17 @@ public class MainActivity extends AppCompatActivity {
                 // true if the switch is in the On position
             }
         });
-        setGivePermission();
 
-        CheckGPIOCableIn();
-    }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (!Utils.rootAccess()){
-            Log.d("TAG","No root access");
+        if (!Utils.rootAccess()) Log.d("TAG","No root access");
+
+        else {
+            setGivePermission();
+            CheckGPIOCableIn();
+            led.out();
+            jet.in();
         }
-
     }
+
 
     private void ReadCard(){
         final Thread t = new Thread() {
