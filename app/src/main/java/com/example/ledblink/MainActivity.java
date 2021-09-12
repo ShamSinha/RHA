@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     GpioProcessor.Gpio led = gpioProcessor.getPin(2);
     GpioProcessor.Gpio jet = gpioProcessor.getPin(3);
 
+    SerialCommArduino serialCommArduino = new SerialCommArduino() ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +43,9 @@ public class MainActivity extends AppCompatActivity {
         if (!Utils.rootAccess()) Log.d("TAG","no root access");
 
         else {
-            setGivePermission();
+            GivePermissions();
             CheckGPIOCableIn();
+            ReadCard();
         }
 
         led.out();
@@ -56,11 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 // true if the switch is in the On position
             }
         });
-
-
     }
-
-
 
     private void CheckGPIOCableIn(){
         final Thread t = new Thread(){
@@ -95,18 +94,38 @@ public class MainActivity extends AppCompatActivity {
         };
         t.start();
     }
-    public void setGivePermission() {
+    public void GivePermissions() {
         List<Integer> gpioList= new ArrayList<Integer>();
         gpioList.add(2);
         gpioList.add(3);
-        gpioList.add(25); /// reset pin 22
-        gpioList.add(8);
-        gpioList.add(9);
-        gpioList.add(10);
-        gpioList.add(11);
 
         Permissions.GivePermissionToGpio(gpioList);
+        Permissions.GivePermissionToSerial();
 
+    }
+
+    private void ReadCard(){
+        final Thread t = new Thread(){
+            @Override
+            public void run(){
+                while(!isInterrupted() && !stopThread){
+                    try {
+                        String rfid_tag = serialCommArduino.GetData();
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    rfid.setText(rfid_tag);
+                                }
+                            });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        };
+        t.start();
     }
 
 

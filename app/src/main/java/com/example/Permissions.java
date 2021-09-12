@@ -13,4 +13,8 @@ public class Permissions {
             Utils.chmod("777", "/sys/class/gpio/gpio" + Pin + "/direction");
         }
     }
+
+    public static void GivePermissionToSerial(){
+        Utils.chmod("777", "/dev/ttyACM0");
+    }
 }
