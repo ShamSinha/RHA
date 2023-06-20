@@ -2,6 +2,14 @@
 RaspberryPi hardware access from android app
 
 
+
+Demo showing gpio read and write from android app (lineage os on raspberry pi)
+
+https://github.com/ShamSinha/RHA/assets/39132039/b32fd6fe-8aea-4734-af12-464e8a7d3518
+
+
+
+
 Arduino Code :
 
       #include <SPI.h>
